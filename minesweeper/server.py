@@ -33,9 +33,7 @@ class MineSweeperServer:
 
         self.is_closed = False
 
-        # I never had enough time to properly learn the logging module, so perhaps I've done something
-        # slightly wrong or little paradigmatic when using the logger, although apparently it works flawlessly.
-        # TO-DO Properly configure and use the logger.
+
         self._logger = getLogger(__name__)
         self._logger.setLevel(DEBUG)
         self._logger.addHandler(StreamHandler(stdout) if debug else NullHandler())
@@ -174,8 +172,6 @@ class Connection:
 
             if self.client is not None:
                 try:
-                    # TO-DO Most of the times one or both of the two lines below raised an exception.
-                    # Finding out why and fixing the problem may be to consider.
                     self.client.close()
                     self.client.shutdown(SHUT_RDWR)
                 except OSError:
